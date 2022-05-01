@@ -1,0 +1,13 @@
+name: DistPlot
+title: DistPlot
+username:
+account: elghouch
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6208681
+bundleId: 5856326
+url: https://elghouch.shinyapps.io/DistPlot/
+when: 1651384846.36836
+lastSyncTime: 1651384846.36836
+asMultiple: FALSE
+asStatic: FALSE
