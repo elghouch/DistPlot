@@ -1,4 +1,4 @@
-# LDATS2030 - Lab4: DistPlot package
+# LDATS2030 - Lab4: `DistPlot` package
 
 * To downlod this folder to your computer as `.zip` file: 
 
