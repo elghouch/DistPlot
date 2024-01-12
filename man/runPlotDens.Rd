@@ -6,11 +6,8 @@
 \usage{
 runPlotDens()
 }
-\value{
-shiny app
-}
 \description{
-Plot both the Normal density and the Student density \strong{interactively} using shiny.
+Plot both the Normal density and the Student density \strong{interactively} using Shiny.
 }
 \examples{
 # runPlotDens()

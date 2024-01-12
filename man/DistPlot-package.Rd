@@ -6,13 +6,10 @@
 \alias{DistPlot-package}
 \title{DistPlot: Normal vs Studnet's t desnity}
 \description{
-This package provides an easy way to plot both the Normal density 
-    and the Student density in the same graph using `ggplot2` and `Shiny`. 
-    The plot also shows shaded areas under each density corresponding to 
-    a user-specified interval.
+This package provides an easy way to plot both the Normal density and the Student density in the same graph using `ggplot2` and `Shiny`. The plot also shows shaded areas under each density corresponding to a user-specified interval.
 }
 \author{
-\strong{Maintainer}: Anouar El Ghouch \email{first.last@example.com}
+\strong{Maintainer}: Anouar El Ghouch \email{anouar.elghouch@uclouvain.be}
 
 }
 \keyword{internal}

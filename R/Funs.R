@@ -17,9 +17,6 @@
 #' @examples
 #' PlotDens()
 #'
-#' @import stats
-#' @import ggplot2
-#'
 PlotDens <- function(mean = 0, sd = 1, df = 1, a = -1, b = 1, output="overlay") {
 
   theme_set(
@@ -161,20 +158,16 @@ return(p)
 
 #' Normal vs the Student
 #'
-#' Plot both the Normal density and the Student density **interactively** using shiny.
-#'
-#' @return shiny app
+#' Plot both the Normal density and the Student density **interactively** using Shiny.
 #'
 #' @export
 #'
 #' @examples
 #' # runPlotDens()
 #'
-#' @import shiny
 runPlotDens <- function() {
 
   ui <- fluidPage(
-
 
     # App title ----
     titlePanel("Normal vs Student"),
