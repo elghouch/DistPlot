@@ -17,6 +17,9 @@
 #' @examples
 #' PlotDens()
 #'
+#' @import stats
+#' @import ggplot2
+#'
 PlotDens <- function(mean = 0, sd = 1, df = 1, a = -1, b = 1, output="overlay") {
 
   theme_set(
@@ -35,7 +38,7 @@ PlotDens <- function(mean = 0, sd = 1, df = 1, a = -1, b = 1, output="overlay") 
           sd = sd
         ),
         aes(color = paste("Normal ", "(mean = ", mean, ", sd= ", sd, ")\nP(a < X < b) = ", round(pnorm(b, mean = mean, sd = sd) - pnorm(a, mean = mean, sd = sd), 3), sep = "")),
-        size = 1
+        linewidth = 1
       ) +
       stat_function(
         fun = dnorm,
@@ -49,8 +52,8 @@ PlotDens <- function(mean = 0, sd = 1, df = 1, a = -1, b = 1, output="overlay") 
       ) +
       xlim(-5, 5) +
       labs(color = NULL, y = "density", x = "") +
-      geom_segment(data = NULL, aes(x = a, y = 0, xend = a, yend = dnorm(a, mean = mean, sd = sd)), linetype = "dashed", size = 0.5) +
-      geom_segment(data = NULL, aes(x = b, y = 0, xend = b, yend = dnorm(b, mean = mean, sd = sd)), linetype = "dashed", size = 0.5) +
+      geom_segment(data = NULL, aes(x = a, y = 0, xend = a, yend = dnorm(a, mean = mean, sd = sd)), linetype = "dashed", linewidth = 0.5) +
+      geom_segment(data = NULL, aes(x = b, y = 0, xend = b, yend = dnorm(b, mean = mean, sd = sd)), linetype = "dashed", linewidth = 0.5) +
       annotate(
         geom = "text", x = a, y = dnorm(a, mean = mean, sd = sd)/2, label = "a",
         fontface = "plain", angle = 90, vjust = -1
@@ -70,7 +73,7 @@ if(output=="t") {
           df = df
         ),
         aes(color = paste("Student's t-distributio ", "(df = ", df, ")\nP(a < X < b) = ", round(pt(b, df = df) - pt(a, df = df), 3), sep = "")),
-        size = 1
+        linewidth = 1
       ) +
       stat_function(
         fun = dt,
@@ -83,8 +86,8 @@ if(output=="t") {
       ) +
       xlim(-5, 5) +
       labs(color = NULL, y = "density", x = "") +
-      geom_segment(data = NULL, aes(x = a, y = 0, xend = a, yend = dt(a, df = df)), linetype = "dashed", size = 0.5) +
-      geom_segment(data = NULL, aes(x = b, y = 0, xend = b, yend = dt(b, df = df)), linetype = "dashed", size = 0.5) +
+      geom_segment(data = NULL, aes(x = a, y = 0, xend = a, yend = dt(a, df = df)), linetype = "dashed", linewidth = 0.5) +
+      geom_segment(data = NULL, aes(x = b, y = 0, xend = b, yend = dt(b, df = df)), linetype = "dashed", linewidth = 0.5) +
       annotate(
         geom = "text", x = a, y = dt(a, df = df) / 2, label = "a",
         fontface = "plain", angle = 90, vjust = -1
@@ -106,7 +109,7 @@ if(output=="overlay") {
         sd = sd
       ),
       aes(color = paste("Normal ", "(mean = ", mean, ", sd= ", sd, ")\nP(a < X < b) = ", round(pnorm(b, mean = mean, sd = sd) - pnorm(a, mean = mean, sd = sd), 3), sep = "")),
-      size = 1
+      linewidth = 1
     ) +
     stat_function(
       fun = dnorm,
@@ -124,7 +127,7 @@ if(output=="overlay") {
         df = df
       ),
       aes(color = paste("Student's t-distributio ", "(df = ", df, ")\nP(a < X < b) = ", round(pt(b, df = df) - pt(a, df = df), 3), sep = "")),
-      size = 1
+      linewidth = 1
     ) +
     stat_function(
       fun = dt,
@@ -137,8 +140,8 @@ if(output=="overlay") {
     ) +
     xlim(-5, 5) +
     labs(color = NULL, y = "density", x = "") +
-    geom_segment(data = NULL, aes(x = a, y = 0, xend = a, yend = max(dt(a, df = df), dnorm(a, mean = mean, sd = sd))), linetype = "dashed", size = 0.5) +
-    geom_segment(data = NULL, aes(x = b, y = 0, xend = b, yend = max(dt(b, df = df), dnorm(b, mean = mean, sd = sd))), linetype = "dashed", size = 0.5) +
+    geom_segment(data = NULL, aes(x = a, y = 0, xend = a, yend = max(dt(a, df = df), dnorm(a, mean = mean, sd = sd))), linetype = "dashed", linewidth = 0.5) +
+    geom_segment(data = NULL, aes(x = b, y = 0, xend = b, yend = max(dt(b, df = df), dnorm(b, mean = mean, sd = sd))), linetype = "dashed", linewidth = 0.5) +
     annotate(
       geom = "text", x = a, y = max(dt(a, df = df), dnorm(a, mean = mean, sd = sd)) / 2, label = "a",
       fontface = "plain", angle = 90, vjust = -1
@@ -158,16 +161,20 @@ return(p)
 
 #' Normal vs the Student
 #'
-#' Plot both the Normal density and the Student density **interactively** using Shiny.
+#' Plot both the Normal density and the Student density **interactively** using shiny.
+#'
+#' @return shiny app
 #'
 #' @export
 #'
 #' @examples
 #' # runPlotDens()
 #'
+#' @import shiny
 runPlotDens <- function() {
 
   ui <- fluidPage(
+
 
     # App title ----
     titlePanel("Normal vs Student"),
