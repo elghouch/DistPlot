@@ -9,5 +9,5 @@
 
 * To install this package directly (as you usually do with other packages from CRAN), run
     ```r
-    devtools::install_github("elghouch/DistPlot")
+    pak::pak("elghouch/DistPlot")
     ```
